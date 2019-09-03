@@ -26,3 +26,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `npm run deploy`
+
+Deploys the app to GitHub Pages.<br>
+Requires the `gh-pages` package from npm (`npm install gh-pages`)<br>
+Make sure to change the value of the entry `homepage` in the file `package.json` to match your GitHub Pages URL
