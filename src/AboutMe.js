@@ -1,21 +1,27 @@
 import React, { Component } from "react";
- 
-class AboutMe extends Component {
-  render() {
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3, 2),
+  },
+}))
+
+export default function AboutMe() {
+    const classes = useStyles();
     return (
       <div>
-        <h2>ABOUT ME</h2>
-        <p>Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-        metus nec massa. Maecenas hendrerit laoreet augue
-        nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.</p>
- 
-        <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
-      </div>
+        <Paper className={classes.root}>
+          <Typography variant="h5" component="h3">
+            About me
+          </Typography>
+          <Typography component="p">
+            Paper can be used to build surface or other elements for your application.
+          </Typography>
+        </Paper>
+     </div>
     );
-  }
 }
- 
-export default AboutMe;
