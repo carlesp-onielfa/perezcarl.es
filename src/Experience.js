@@ -1,22 +1,34 @@
-import React, { Component } from "react";
- 
-class Experience extends Component {
-  render() {
+import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3, 2),
+  },
+}))
+export default function Experience(){
+  const classes = useStyles();
     return (
       <div>
-        <h2>EXPERIENCE</h2>
-        <p>Mauris sem velit, vehicula eget sodales vitae,
-        rhoncus eget sapien:</p>
-        <ol>
-          <li>Nulla pulvinar diam</li>
-          <li>Facilisis bibendum</li>
-          <li>Vestibulum vulputate</li>
-          <li>Eget erat</li>
-          <li>Id porttitor</li>
-        </ol>
-      </div>
+        <Paper className={classes.root}>
+          <Typography variant="h4" component="h2">
+            Experience
+          </Typography>
+          <Typography component="p">
+            Paper can be used to build surface or other elements for your application.
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+          </Typography>
+        </Paper>
+     </div>
     );
-  }
 }
- 
-export default Experience;

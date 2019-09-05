@@ -9,13 +9,13 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Contact() {
+export default function Skills() {
   const classes = useStyles();
   return (
     <div>
       <Paper className={classes.root}>
         <Typography variant="h4" component="h2">
-          Contact
+          Skills
         </Typography>
         <Typography component="p">
           Paper can be used to build surface or other elements for your application.
