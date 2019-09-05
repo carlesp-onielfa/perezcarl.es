@@ -200,10 +200,13 @@ class Manager {
 
   onSectionChange = (newAnchor, oldAnchor) => {
     //ADDED CODE FOR TAB SWITCH
-    const newHash = newAnchor.split("______")[1]
-    const oldHash = oldAnchor.split("______")[1]
+    const newHash = newAnchor.split("______")[1];
+    const oldHash = oldAnchor.split("______")[1];
 
-
+    if(typeof this.config.onChange === "function"){
+      this.config.onChange(newHash);
+      console.log("Called on change "+ newHash);
+    }
 
     const {onSectionEnter} = this.config;
     const getPath = (anchor) => anchor.name
