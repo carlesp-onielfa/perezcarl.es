@@ -5,9 +5,8 @@ import Experience from "./Experience";
 import Contact from "./Contact";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
-import NavTabs from "./NavTabs";
 
-import {Typography, Paper, Tab, Tabs} from "@material-ui/core";
+import {Typography, Paper, Tab, Tabs, CssBaseline, Container} from "@material-ui/core";
 import { HashLink as Link } from 'react-router-hash-link';
 
 import ScrollableSection from './custom_scrollable-section';
@@ -15,16 +14,6 @@ import {configureAnchors} from "./custom_scrollable-section";
 
 import {Sticky, StickyContainer} from 'react-sticky';
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-  
-const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        paddingTop : 0,
-        marginTop:0,
-        },
-});
 class Main extends React.Component{
 
     state = {
@@ -56,11 +45,11 @@ class Main extends React.Component{
             marginBottom : "400px", 
             marginTop: '20px'
         }
-        const { classes } = this.props;
         const headerSize = 70;
         configureAnchors({offset: 90, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
         return (
-            <div>
+            
+            <Container>
                 <header style={{margin : '20px'}}>
                     <Typography variant="h2" component="h1" >
                         Carles Pérez Onielfa
@@ -69,18 +58,20 @@ class Main extends React.Component{
                 <StickyContainer>
                     <BrowserRouter>
                         <Sticky>{({ style }) => <div style={style}>
-                            <Paper className={classes.root}>       
+                            <Paper>       
                                 <Tabs
                                     value={this.state.activeTabIndex}
                                     onChange={this.handleChange}
                                     indicatorColor="primary"
                                     textColor="primary"
+                                    scrollButtons="auto"
                                     centered
+                                    
                                 >
-                                    <Tab label="About me" value  = 'about' component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label="Experience" value  = 'experience' component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label="Skills" value  = 'skills' component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label="Contact" value = 'contact' component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label="About me" value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label="Experience" value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label="Skills" value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label="Contact" value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
                                 </Tabs>
                             </Paper>
                         </div>}</Sticky>
@@ -109,12 +100,8 @@ class Main extends React.Component{
                         </div>
                     </ScrollableSection>
                 </StickyContainer>
-            </div>
+            </Container>
         );
     }
 }
-Main.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-  
-export default withStyles(styles)(Main);
+export default Main;
