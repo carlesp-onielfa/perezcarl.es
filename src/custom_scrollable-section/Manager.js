@@ -2,6 +2,7 @@ import { debounce, getAnchoreByName } from './utils/func';
 import { getBestAnchorGivenScrollLocation, getScrollTop, scrollTo } from './utils/scroll';
 import { getHash, updateHash, removeHash } from './utils/hash';
 import { setMetaTags, getDefaultMetaTags } from './utils/meta';
+import AboutMe from '../AboutMe';
 
 const defaultConfig = {
   affectHistory: false,
@@ -205,7 +206,6 @@ class Manager {
 
     if(typeof this.config.onChange === "function"){
       this.config.onChange(newHash);
-      console.log("Called on change "+ newHash);
     }
 
     const {onSectionEnter} = this.config;
@@ -227,7 +227,7 @@ class Manager {
     const {offset, keepLastAnchorHash, affectHistory} = this.config;
     const nextAnchor = getBestAnchorGivenScrollLocation(this.anchors, -offset);
     const prevAnchor = getHash({manager: this});
-
+    console.log("New hash? "+nextAnchor)
     if (nextAnchor && prevAnchor !== nextAnchor) {
       this.forcedHash = true;
 
@@ -249,7 +249,6 @@ class Manager {
 
   handleHashChange = (e) => {
     this.basePath = this.getBasePath(this.anchors);
-
     if (this.forcedHash) {
       this.forcedHash = false;
     } else {

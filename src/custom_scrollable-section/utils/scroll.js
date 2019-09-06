@@ -30,7 +30,7 @@ export const getElementOffset = (element) => {
 export const doesElementContainScrollTop = (element, extraOffset = 0) => {
   const scrollTop = getScrollTop();
   const offsetTop = getElementOffset(element).top + extraOffset;
-  return scrollTop >= offsetTop && scrollTop < offsetTop + element.offsetHeight;
+  return scrollTop >= offsetTop;
 }
 
 // is el2's location more relevant than el2,
