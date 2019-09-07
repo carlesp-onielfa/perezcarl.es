@@ -4,18 +4,56 @@ import { initReactI18next } from "react-i18next";
 
 const resources = {
     en:{
-        translation:{
-            "Welcome" : "Welcome"
+        translation:
+        {
+            "Welcome" : "Welcome",
+            "About me" : "About me",
+            "Experience": "Experience",
+            "Skills": "Skills",
+            "Contact" : "Contact",
+            "Programming Languages" : "Programming Languages",
+            "Spoken Languages": "Spoken Languages",
+            "Libraries and Frameworks": "Libraries and Frameworks",
+            "Programs and Tools": "Programs and Tools",
+            "English" : "English",
+            "German" : "German",
+            "Catalan" : "Catalan",
+            "Spanish" : "Spanish"
+
         }
     },
     es:{
         translation:{
-            "Welcome" : "Bienvenido"
+            "Welcome" : "Bienvenido",
+            "About me" : "Sobre mi",
+            "Experience": "Experiencia",
+            "Skills" : "Competencias",
+            "Contact":"Contacto",
+            "Programming Languages" : "Lenguajes de Programación",
+            "Spoken Languages": "Idiomas",
+            "Libraries and Frameworks": "Librerías y Frameworks",
+            "Programs and Tools": "Programas y Herramientas",
+            "English" : "Inglés",
+            "German" : "Alemán",
+            "Catalan" : "Catalán",
+            "Spanish" : "Español"
         }
     },
     cat:{
         translation:{
-            "Welcome" : "Benvingut"
+            "Welcome" : "Benvingut",
+            "About me" : "Sobre mi",
+            "Experience": "Experiència",
+            "Skills": "Competències",
+            "Contact" : "Contacte",
+            "Programming Languages" : "Llenguatges de Programació",
+            "Spoken Languages": "Idiomes",
+            "Libraries and Frameworks": "Llibreríes i Frameworks",
+            "Programs and Tools": "Programes i Eines",
+            "English" : "Anglès",
+            "German" : "Alemany",
+            "Catalan" : "Català",
+            "Spanish" : "Espanyol"
         }
     },
 };

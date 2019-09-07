@@ -5,7 +5,7 @@ import Experience from "./Experience";
 import Contact from "./Contact";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
-import Header from "./Header_new";
+import Header from "./Header";
 import {Paper, Tab, Tabs, Container, Button} from "@material-ui/core";
 import { HashLink as Link } from 'react-router-hash-link';
 
@@ -14,7 +14,7 @@ import {configureAnchors} from "./custom_scrollable-section";
 
 import {Sticky, StickyContainer} from 'react-sticky';
 
-import { Trans } from "react-i18next";
+import { withTranslation } from 'react-i18next';
 
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -87,7 +87,7 @@ class Main extends React.Component{
                         <StickyContainer>
                             <BrowserRouter>
                                 <Sticky>{({ style }) => <div style={style}>
-                                    <Paper>       
+                                    <Paper >       
                                         <Tabs
                                             value={this.state.activeTabIndex}
                                             onChange={this.handleChange}
@@ -95,12 +95,11 @@ class Main extends React.Component{
                                             textColor="primary"
                                             scrollButtons="auto"
                                             centered
-                                            
                                         >
-                                            <Tab label="About me" value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label="Experience" value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label="Skills" value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label="Contact" value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                            <Tab label={this.props.t("About me")} value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                            <Tab label={this.props.t("Experience")} value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                            <Tab label={this.props.t("Skills")} value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                            <Tab label={this.props.t("Contact")} value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
                                         </Tabs>
                                     </Paper>
                                 </div>}</Sticky>
@@ -119,7 +118,7 @@ class Main extends React.Component{
                             </ScrollableSection>
 
                             <ScrollableSection hash={'skills'} id = 'skills'>
-                                <div style={divStyle}>
+                                <div>
                                     <Skills/>
                                 </div>
                             </ScrollableSection>
@@ -136,4 +135,4 @@ class Main extends React.Component{
     }
 }
 
-export default Main;
+export default withTranslation()(Main);

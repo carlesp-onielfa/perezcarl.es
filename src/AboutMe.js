@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import { Trans } from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,7 @@ export default function AboutMe() {
       <div>
         <Paper className={classes.root}>
           <Typography variant="h4" component="h2">
-            About me
+            <Trans>About me</Trans>
           </Typography>
           <Typography component="p">
             Paper can be used to build surface or other elements for your application.
