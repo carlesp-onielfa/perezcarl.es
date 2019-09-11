@@ -118,7 +118,15 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3, 2),
+  },
+}))
+
+
 export default function Skills() {
+  const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
   const { t, i18n } = useTranslation();
@@ -132,8 +140,8 @@ export default function Skills() {
 
   return (
     <div>
-      <Paper>
-        <Typography variant="h4" component="h2" style={{padding : '20px'}}>
+      <Paper >
+        <Typography className={classes.root} variant="h4" component="h2" style={{padding : '20px'}}>
           <Trans>Skills</Trans>
         </Typography>
         <Tabs

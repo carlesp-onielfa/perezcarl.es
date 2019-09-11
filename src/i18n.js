@@ -36,7 +36,8 @@ const resources = {
             "English" : "Inglés",
             "German" : "Alemán",
             "Catalan" : "Catalán",
-            "Spanish" : "Español"
+            "Spanish" : "Español",
+            "Native" : "Nativo"
         }
     },
     cat:{
@@ -53,7 +54,8 @@ const resources = {
             "English" : "Anglès",
             "German" : "Alemany",
             "Catalan" : "Català",
-            "Spanish" : "Espanyol"
+            "Spanish" : "Espanyol",
+            "Native" : "Natiu",
         }
     },
 };

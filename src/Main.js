@@ -17,7 +17,7 @@ import { withTranslation } from 'react-i18next';
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from "@material-ui/core";
-import { teal, pink } from "@material-ui/core/colors";
+import { teal, pink, green } from "@material-ui/core/colors";
 
 
 const globalTheme = createMuiTheme({
@@ -81,7 +81,7 @@ class Main extends React.Component{
             marginBottom: '200px'
         }
         const headerSize = 100;
-        configureAnchors({offset: headerSize+15, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
+        configureAnchors({offset: headerSize+20, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
         console.log("Changed palette to " + activeTheme.palette.type)
         return (
             <div>
@@ -113,7 +113,7 @@ class Main extends React.Component{
                             <HeaderButtons/>
                         </Toolbar>
                     </AppBar>
-                    <Container style={{marginTop:'100px', marginBottom:'400px'}}>
+                    <Container style={{marginTop:'100px', marginBottom:'1000px'}}>
                             <ScrollableSection hash={'about'} id = 'about'>
                                 <div style={divStyle}>   
                                     <AboutMe/>
