@@ -5,19 +5,14 @@ import i18next from "./i18n";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    title: {
-      flexGrow: 1,
-
-    },
+    button:{
+        marginLeft: '20px',
+    }
   }));
 
-export default function Header(){
+export default function HeaderButtons(){
     const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
-    const headerText = "Carles Pérez Onielfa";
 
     function handleClickLang(event) {
         setAnchorEl(event.currentTarget);
@@ -32,11 +27,7 @@ export default function Header(){
 
     return(
         <div>
-            <Toolbar>
-                <Typography variant="h2" component="h1" className={classes.title} color = 'primary' style={{margin:'20px'}}>
-                    {headerText}
-                </Typography>
-                <IconButton className={classes.menuButton} color="inherit" aria-controls="lang-menu" aria-haspopup="true" onClick={handleClickLang}>
+                <IconButton edge='end' className={classes.button} color="inherit" aria-controls="lang-menu" aria-haspopup="true" onClick={handleClickLang}>
                     <Translate />
                 </IconButton>
                 <Menu
@@ -50,12 +41,9 @@ export default function Header(){
                     <MenuItem onClick={()=>changeLang('es')}>Español</MenuItem>
                     <MenuItem onClick={()=>changeLang('cat')}>Català</MenuItem>
                 </Menu>
-                
-
-                <IconButton className={classes.menuButton} color="inherit" aria-label="darkmode">
+                <IconButton edge='end' className={classes.button} color="inherit" aria-label="darkmode">
                     <InvertColors />
                 </IconButton>    
-            </Toolbar>
         </div>
     );
 }

@@ -17,13 +17,11 @@ const skills = {
     values: {
       'English' : {
         level: 3,
-        levelDesc: 'High',
-        acreditation: 'Cambridge Advanced Certificate (Grade A)',
+        levelDesc: 'Cambridge Advanced Certificate',
       },
       'German' : {
         level: 2,
-        levelDesc: 'Medium',
-        acreditation: 'A2',
+        levelDesc: 'A2',
       },
       'Catalan' : {
         level: 4,
@@ -41,7 +39,7 @@ const skills = {
     maxLevel: 3,
     values:{
       'C#':{
-        level: 3
+        level: 3,
       },
       'Java':{
         level: 3
@@ -56,7 +54,8 @@ const skills = {
         level: 2
       },
       'Kotlin':{
-        level: 2
+        level: 2,
+        desc: "Experience with Kotlin applied to Android app programming"
       },
       'Shell Scripting':{
         level: 2

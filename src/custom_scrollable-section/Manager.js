@@ -227,7 +227,6 @@ class Manager {
     const {offset, keepLastAnchorHash, affectHistory} = this.config;
     const nextAnchor = getBestAnchorGivenScrollLocation(this.anchors, -offset);
     const prevAnchor = getHash({manager: this});
-    console.log("New hash? "+nextAnchor)
     if (nextAnchor && prevAnchor !== nextAnchor) {
       this.forcedHash = true;
 

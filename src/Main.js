@@ -5,34 +5,44 @@ import Experience from "./Experience";
 import Contact from "./Contact";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
-import Header from "./Header";
-import {Paper, Tab, Tabs, Container, Button} from "@material-ui/core";
+import HeaderButtons from "./HeaderButtons";
+import {Tab, Tabs, Container, Button, Typography, AppBar, Toolbar} from "@material-ui/core";
 import { HashLink as Link } from 'react-router-hash-link';
 
 import ScrollableSection from './custom_scrollable-section';
 import {configureAnchors} from "./custom_scrollable-section";
-
-import {Sticky, StickyContainer} from 'react-sticky';
 
 import { withTranslation } from 'react-i18next';
 
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from "@material-ui/core";
-import { teal, orange } from "@material-ui/core/colors";
+import { teal, pink } from "@material-ui/core/colors";
 
 
 const globalTheme = createMuiTheme({
     palette:{
       type: 'dark',
       primary: teal,
-      secondary : orange,
+      secondary : pink,
     },
+    
   })
 let theme = createMuiTheme({
     palette : globalTheme.palette,
+    typography: {
+        fontFamily: [
+            'Roboto',
+            'Montserrat',
+            'Arial',
+            'sans-serif',
+          ].join(','),
+        h6:{
+            fontFamily: 'Montserrat'
+        }
+    }
 });
-  
+
 class Main extends React.Component{
 
     state = {
@@ -67,44 +77,43 @@ class Main extends React.Component{
     render(){  
         const {activeTheme} = this.state;
         const divStyle = {
-            marginBottom : "400px", 
-            marginTop: '20px'
+            marginTop : "20px", 
+            marginBottom: '200px'
         }
-        const headerSize = 70;
-        configureAnchors({offset: 90, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
+        const headerSize = 100;
+        configureAnchors({offset: headerSize+15, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
         console.log("Changed palette to " + activeTheme.palette.type)
         return (
             <div>
                 <ThemeProvider theme = {activeTheme}> 
                     <CssBaseline/>
-                    <Container>
-                        <Button onClick={() => this.toggleTheme()}>Prova</Button>
-                        <ScrollableSection hash={''} id = 'main'>
-                            <div>   
-                                <Header/>
+                    <AppBar position='fixed'>
+                        <Toolbar style={{flexGrow:1}}>
+                            <div>
+                                <Typography variant="h6" component="h1" style={{marginRight:'50px', flexGrow:1}}>
+                                    {"CARLES PÉREZ ONIELFA"}
+                                </Typography>
                             </div>
-                        </ScrollableSection>
-                        <StickyContainer>
-                            <BrowserRouter>
-                                <Sticky>{({ style }) => <div style={style}>
-                                    <Paper >       
-                                        <Tabs
-                                            value={this.state.activeTabIndex}
-                                            onChange={this.handleChange}
-                                            indicatorColor="primary"
-                                            textColor="primary"
-                                            scrollButtons="auto"
-                                            centered
-                                        >
-                                            <Tab label={this.props.t("About me")} value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label={this.props.t("Experience")} value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label={this.props.t("Skills")} value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                            <Tab label={this.props.t("Contact")} value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                        </Tabs>
-                                    </Paper>
-                                </div>}</Sticky>
+                            <BrowserRouter>    
+                                <Tabs
+                                    value={this.state.activeTabIndex}
+                                    onChange={this.handleChange}
+                                    indicatorColor="secondary"
+                                    textColor="inherit"
+                                    scrollButtons="auto"
+                                    TabIndicatorProps={{style:{backgroundColor:pink[200]}}}
+                                    style={{height: "70px"}}
+                                >
+                                    <Tab style={{height: "70px"}} label={this.props.t("About me")} value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label={this.props.t("Experience")} value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label={this.props.t("Skills")} value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                    <Tab label={this.props.t("Contact")} value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                                </Tabs>
                             </BrowserRouter>
-
+                            <HeaderButtons/>
+                        </Toolbar>
+                    </AppBar>
+                    <Container style={{marginTop:'100px', marginBottom:'400px'}}>
                             <ScrollableSection hash={'about'} id = 'about'>
                                 <div style={divStyle}>   
                                     <AboutMe/>
@@ -118,7 +127,7 @@ class Main extends React.Component{
                             </ScrollableSection>
 
                             <ScrollableSection hash={'skills'} id = 'skills'>
-                                <div>
+                                <div style={divStyle}>
                                     <Skills/>
                                 </div>
                             </ScrollableSection>
@@ -127,7 +136,6 @@ class Main extends React.Component{
                                     <Contact/>
                                 </div>
                             </ScrollableSection>
-                        </StickyContainer>
                     </Container>
                 </ThemeProvider>
             </div>
