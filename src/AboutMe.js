@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 2),
   },
   media: {
-    height: 500,
+    height: 0,
+    paddingTop: '42.86%'
   },
 }))
 
