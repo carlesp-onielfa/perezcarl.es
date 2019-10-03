@@ -55,7 +55,7 @@ const skills = {
       },
       'Kotlin':{
         level: 2,
-        desc: "Experience with Kotlin applied to Android app programming"
+        //desc: "Experience with Kotlin applied to Android app programming"
       },
       'Shell Scripting':{
         level: 2
@@ -120,7 +120,7 @@ TabPanel.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(3, 3),
   },
 }))
 

@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     button:{
-        marginLeft: '20px',
+        marginLeft: 'auto',
     }
   }));
 
@@ -26,8 +26,8 @@ export default function HeaderButtons(){
     }
 
     return(
-        <div>
-                <IconButton edge='end' className={classes.button} color="inherit" aria-controls="lang-menu" aria-haspopup="true" onClick={handleClickLang}>
+        <div className={classes.button}  >
+                <IconButton edge='end' color="inherit" aria-controls="lang-menu" aria-haspopup="true" onClick={handleClickLang}>
                     <Translate />
                 </IconButton>
                 <Menu
@@ -41,7 +41,7 @@ export default function HeaderButtons(){
                     <MenuItem onClick={()=>changeLang('es')}>Español</MenuItem>
                     <MenuItem onClick={()=>changeLang('cat')}>Català</MenuItem>
                 </Menu>
-                <IconButton edge='end' className={classes.button} color="inherit" aria-label="darkmode">
+                <IconButton edge='end' color="inherit" aria-label="darkmode">
                     <InvertColors />
                 </IconButton>    
         </div>

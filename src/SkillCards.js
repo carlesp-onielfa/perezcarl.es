@@ -43,7 +43,6 @@ const useStyles = makeStyles(theme => ({
  */
 function SkillLevelIcon({level, maxLevel = 3, color = 'primary'}){
     const classes = useStyles();
-    console.log("LEVEL "+level+" MAXLEVEL "+maxLevel)
     return(
         <div className ={classes.root}>
             {[...Array(level).keys()].map(value => (
@@ -123,9 +122,10 @@ function SkillCard({title, data, maxLevel = 3, variant='h6'}){
  * @param {*} skillSection object containing the data for the skills
  */
 export default function SkillCards({skillSection}){
+    const isMobile = window.innerWidth <= 500;
     return(
         <div style={{padding:'20px',paddingBottom:'5px'}}>
-            <GridList cols = {4} spacing = {30} cellHeight='auto'>
+            <GridList cols = {isMobile ? 2 : 4} spacing = {30} cellHeight='auto'>
                 {Object.keys(skillSection.values).map(value => (
                     <GridListTile key={value}>
                         <SkillCard title = {value} data = {skillSection.values[value]} maxLevel = {skillSection.maxLevel}/>

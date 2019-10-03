@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter} from "react-router-dom";
 
 import Experience from "./Experience";
-import Contact from "./Contact";
+import Portfolio from "./Portfolio";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import HeaderButtons from "./HeaderButtons";
@@ -17,8 +17,8 @@ import { withTranslation } from 'react-i18next';
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from "@material-ui/core";
-import { teal, pink, green } from "@material-ui/core/colors";
-
+import { teal, pink } from "@material-ui/core/colors";
+import RootRef from '@material-ui/core/RootRef';
 
 const globalTheme = createMuiTheme({
     palette:{
@@ -40,7 +40,7 @@ let theme = createMuiTheme({
         h6:{
             fontFamily: 'Montserrat'
         }
-    }
+    },
 });
 
 class Main extends React.Component{
@@ -80,39 +80,43 @@ class Main extends React.Component{
             marginTop : "20px", 
             marginBottom: '200px'
         }
+
         const headerSize = 100;
+        const NavTabs = () => ( 
+            <BrowserRouter  style = {{flexGrow:1}}> 
+                <Tabs
+                    value={this.state.activeTabIndex}
+                    onChange={this.handleChange}
+                    indicatorColor="secondary"
+                    textColor="inherit"
+                    scrollButtons="auto"
+                    style = {{flexGrow:'1'}}
+                    TabIndicatorProps={{style:{backgroundColor:pink[200]}}}
+                >
+                    <Tab style={{height: "70px"}} label={this.props.t("About me")} value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                    <Tab label={this.props.t("Experience")} value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                    <Tab label={this.props.t("Skills")} value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                    <Tab label={this.props.t("Portfolio")} value = 'portfolio' disableFocusRipple component={Link} to="#portfolio" scroll={el => this.scrollWithOffset(el, headerSize)}/>
+                </Tabs>
+            </BrowserRouter>);
+        
         configureAnchors({offset: headerSize+20, keepLastAnchorHash : true, onChange : (newValue) => this.navigate(newValue)})
         console.log("Changed palette to " + activeTheme.palette.type)
         return (
             <div>
                 <ThemeProvider theme = {activeTheme}> 
                     <CssBaseline/>
-                    <AppBar position='fixed'>
-                        <Toolbar style={{flexGrow:1}}>
-                            <div>
-                                <Typography variant="h6" component="h1" style={{marginRight:'50px', flexGrow:1}}>
-                                    {"CARLES PÉREZ ONIELFA"}
-                                </Typography>
-                            </div>
-                            <BrowserRouter>    
-                                <Tabs
-                                    value={this.state.activeTabIndex}
-                                    onChange={this.handleChange}
-                                    indicatorColor="secondary"
-                                    textColor="inherit"
-                                    scrollButtons="auto"
-                                    TabIndicatorProps={{style:{backgroundColor:pink[200]}}}
-                                    style={{height: "70px"}}
-                                >
-                                    <Tab style={{height: "70px"}} label={this.props.t("About me")} value  = 'about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label={this.props.t("Experience")} value  = 'experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label={this.props.t("Skills")} value  = 'skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                    <Tab label={this.props.t("Contact")} value = 'contact' disableFocusRipple component={Link} to="#contact" scroll={el => this.scrollWithOffset(el, headerSize)}/>
-                                </Tabs>
-                            </BrowserRouter>
-                            <HeaderButtons/>
-                        </Toolbar>
-                    </AppBar>
+                        <AppBar position='fixed'>
+                            <Toolbar style={{flexGrow:1}}>
+                                <div>
+                                    <Typography variant="h6" component="h1" style={{marginRight:'50px', flexGrow:1}}>
+                                        {"CARLES PÉREZ ONIELFA"}
+                                    </Typography>
+                                </div>
+                                <NavTabs/>
+                                <HeaderButtons/>
+                            </Toolbar>                            
+                        </AppBar>
                     <Container style={{marginTop:'100px', marginBottom:'1000px'}}>
                             <ScrollableSection hash={'about'} id = 'about'>
                                 <div style={divStyle}>   
@@ -131,9 +135,9 @@ class Main extends React.Component{
                                     <Skills/>
                                 </div>
                             </ScrollableSection>
-                            <ScrollableSection hash={'contact'} id = 'contact'>
+                            <ScrollableSection hash={'portfolio'} id = 'portfolio'>
                                 <div style={divStyle}>
-                                    <Contact/>
+                                    <Portfolio/>
                                 </div>
                             </ScrollableSection>
                     </Container>

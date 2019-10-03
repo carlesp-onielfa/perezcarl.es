@@ -10,16 +10,16 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Contact() {
+export default function Portfolio() {
   const classes = useStyles();
   return (
     <div>
       <Paper className={classes.root}>
         <Typography variant="h4" component="h2">
-          <Trans>Contact</Trans>
+          <Trans>Portfolio</Trans>
         </Typography>
         <Typography component="p">
-          Paper can be used to build surface or other elements for your application.
+          WIP
         </Typography>
       </Paper>
    </div>

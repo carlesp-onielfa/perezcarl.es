@@ -1,0 +1,16 @@
+Tab height same as AppBar height
+Translations
+Animations
+move all text to Translations
+iref style
+Areas of interest/Expertise  (About me??)
+
+
+
+Dark mode button
+Skills icons
+delocalize Github Link
+Portfolio
+Listen for window width change https://goshakkk.name/different-mobile-desktop-tablet-layouts-react/
+improve documentation
+Dynamic end of page blank space for scroll
