@@ -1,10 +1,7 @@
 Tab height same as AppBar height
-Translations
 Animations
-move all text to Translations
-iref style
 Areas of interest/Expertise  (About me??)
-
+tabs scroll mobile skills
 
 
 Dark mode button

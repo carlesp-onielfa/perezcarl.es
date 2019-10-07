@@ -4,9 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import profile from './images/profile.jpg'
 import { useTranslation } from "react-i18next";
-import { CardMedia, CardContent , Card} from "@material-ui/core";
+import { CardMedia, CardContent , Card, Fade, Grow} from "@material-ui/core";
 import { MdEmail, MdSchool} from "react-icons/md";
 import { GoMarkGithub } from "react-icons/go";
+import {FaArtstation} from "react-icons/fa";
+import VizSensor from "react-visibility-sensor";
+import Link from '@material-ui/core/Link';
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 3),
@@ -21,36 +25,50 @@ export default function AboutMe() {
     const classes = useStyles();
     const { t, i18n } = useTranslation();
     const iconStyle = {marginRight:'12px', size:'1.7em', "vertical-align": "middle"}
+    const [visible, setVisible] = React.useState(false);
+
     return (
       <div>
-        <Card >
-            <CardMedia className={classes.media}
-              image={profile}
-            />
-            <CardContent className={classes.root}>
-              <Typography variant="h4" component="h2">
-                {t('About me')}
-              </Typography>
-              <br/>
-              <div>
-                <Typography variant='h6'>
-                  <MdEmail  style={iconStyle}/> {t('email')}
-                </Typography>
-                <Typography variant='h6'>
-                  <GoMarkGithub  style={iconStyle} /> <a href="https://github.com/carlesp-onielfa">Github</a>
-                </Typography>
-                <br/><br/>
-                <Typography variant='h6'>
-                  <MdSchool style={iconStyle} /> {t('education')}
-                </Typography>
-              </div>
-              <br/>
-              {t("about description").split('\n').map(c => {
-                  return (<Typography paragraph component="p"> {c} </Typography>)
-              })}
-              
-            </CardContent>
-        </Card>
+        <VizSensor onChange={(isVisible)=>{setVisible(isVisible)}} >
+          <Fade in={!visible} timeout={1500}>
+            <Card >
+                <Fade in={!visible} timeout={3000}>
+                  <CardMedia className={classes.media}
+                    image={profile}
+                  />
+                </Fade>
+                <CardContent className={classes.root}>
+                  <Typography variant="h4" component="h2">
+                    {t('About me')}
+                  </Typography>
+                  <br/>
+                  <div>
+                    <Typography variant='h6'>
+                      <MdEmail  style={iconStyle}/>
+                      <Link href={"mailto:"+t('email')}>{t('email')}</Link>
+                    </Typography>
+                    <Typography variant='h6'>
+                      <GoMarkGithub  style={iconStyle} />
+                      <Link href={t('github')}>Github</Link>
+                    </Typography>
+                    <Typography variant='h6'>
+                      <FaArtstation  style={iconStyle} />
+                      <Link href={t('artstation')}>Artstation</Link>
+                    </Typography>
+                    <br/><br/>
+                    <Typography variant='h6'>
+                      <MdSchool style={iconStyle} /> {t('education')}
+                    </Typography>
+                  </div>
+                  <br/>
+                  {t("about description").split('\n').map(c => {
+                      return (<Typography paragraph component="p"> {c} </Typography>)
+                  })}
+                  
+                </CardContent>
+            </Card>
+          </Fade>
+        </VizSensor>
      </div>
     );
 }
