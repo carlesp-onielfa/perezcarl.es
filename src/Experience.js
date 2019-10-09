@@ -62,7 +62,7 @@ function QontoStepIcon(props) {
   const { active, icon='year'} = props;
   return (
     <Box className={clsx(classes.root, {[classes.active]: active,})} >
-      <Typography align='center'>
+      <Typography variant='caption' align='center'>
         {icon}
       </Typography>
     </Box>
@@ -93,12 +93,12 @@ function ExperienceStepper(){
             <Step key={label}>
               <StepButton icon = {steps[label]['time']} onClick={handleStep(index)} >
                 <StepLabel  StepIconComponent={QontoStepIcon} >
-                  <Typography variant = 'h6'>{t(label)}</Typography>
+                  <Typography variant = 'h6' align='left'>{t(label)}</Typography>
                 </StepLabel>
               </StepButton>
               <StepContent>
                 {t(steps[label]['content']).split('\n').map((value)=>{
-                  return <Typography paragraph>{value}</Typography>;
+                  return <Typography paragraph align='justify'>{value}</Typography>;
                 })}
               </StepContent>
             </Step>

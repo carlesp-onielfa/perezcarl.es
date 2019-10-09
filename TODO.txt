@@ -1,13 +1,5 @@
-Tab height same as AppBar height
-Animations
-Areas of interest/Expertise  (About me??)
-tabs scroll mobile skills
-auto margin title headbar
-EM units
-
 Dark mode button
 Skills icons
-delocalize Github Link
 Portfolio
 Listen for window width change https://goshakkk.name/different-mobile-desktop-tablet-layouts-react/
 improve documentation

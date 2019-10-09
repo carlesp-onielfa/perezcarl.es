@@ -13,6 +13,7 @@ class CustomAppBar extends React.Component {
         activeTabIndex: 'about',
         visible: 'false'
     };
+    
     navigate(newValue) {
         this.setState((prevState, props) => ({
             activeTabIndex: newValue
@@ -32,6 +33,7 @@ class CustomAppBar extends React.Component {
         });
     }
     render() {
+        const isMobile = window.innerWidth <= 500;
         const headerSize = 100;
         configureAnchors({ offset: headerSize + 20, keepLastAnchorHash: true, onChange: (newValue) => this.navigate(newValue) })
         const NavTabs = () => (
@@ -61,7 +63,7 @@ class CustomAppBar extends React.Component {
                             {"CARLES PÉREZ ONIELFA"}
                         </Typography>
                     </div>
-                    <NavTabs />
+                    {!isMobile && <NavTabs />}
                     <HeaderButtons />
                 </Toolbar>
             </AppBar>

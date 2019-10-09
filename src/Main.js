@@ -7,7 +7,7 @@ import { Container } from "@material-ui/core";
 import ScrollableSection from './custom_scrollable-section';
 import { withTranslation } from 'react-i18next';
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { CssBaseline } from "@material-ui/core";
 import { teal, pink } from "@material-ui/core/colors";
 import CustomAppBar from "./CustomAppBar";
@@ -20,7 +20,7 @@ const globalTheme = createMuiTheme({
     },
 
 })
-let theme = createMuiTheme({
+let theme = responsiveFontSizes(createMuiTheme({
     palette: globalTheme.palette,
     typography: {
         fontFamily: [
@@ -36,7 +36,7 @@ let theme = createMuiTheme({
             fontFamily: 'Montserrat'
         }
     },
-});
+}));
 
 class Main extends React.Component {
 
@@ -52,8 +52,8 @@ class Main extends React.Component {
     render() {
         const { activeTheme } = this.state;
         const divStyle = {
-            marginTop: "20px",
-            marginBottom: '200px'
+            marginTop: "2em",
+            marginBottom: '10em'
         }
 
         console.log("Changed palette to " + activeTheme.palette.type)
