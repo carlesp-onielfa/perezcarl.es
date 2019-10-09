@@ -9,7 +9,9 @@ import VizSensor from "react-visibility-sensor";
 import Fade from '@material-ui/core/Fade';
 const useStyles = makeStyles(theme => ({
   rootPaper: {
-    padding: theme.spacing(3, 3),
+    paddingTop: theme.spacing(3),
+    paddingLeft: theme.spacing(3),
+    paddingRight: 0,
   },
   root: {
     width: '100%',
@@ -98,7 +100,7 @@ function ExperienceStepper(){
               </StepButton>
               <StepContent>
                 {t(steps[label]['content']).split('\n').map((value)=>{
-                  return <Typography paragraph align='justify'>{value}</Typography>;
+                  return <Typography paragraph>{value}</Typography>;
                 })}
               </StepContent>
             </Step>
