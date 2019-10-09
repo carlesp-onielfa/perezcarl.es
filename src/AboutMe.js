@@ -29,8 +29,8 @@ export default function AboutMe() {
 
     return (
       <div>
-        <VizSensor onChange={(isVisible)=>{setVisible(isVisible)}} >
-          <Fade in={!visible} timeout={1500}>
+        <VizSensor onChange={(isVisible)=>{setVisible(!isVisible)}} partialVisibility>
+          <Fade in={!visible} timeout={1000}>
             <Card >
                 <Fade in={!visible} timeout={3000}>
                   <CardMedia className={classes.media}
@@ -39,7 +39,7 @@ export default function AboutMe() {
                 </Fade>
                 <CardContent className={classes.root}>
                   <Typography variant="h4" component="h2">
-                    {t('About me')}
+                    {t('CARLES PÉREZ ONIELFA')}
                   </Typography>
                   <br/>
                   <div>

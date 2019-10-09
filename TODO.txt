@@ -2,7 +2,8 @@ Tab height same as AppBar height
 Animations
 Areas of interest/Expertise  (About me??)
 tabs scroll mobile skills
-
+auto margin title headbar
+EM units
 
 Dark mode button
 Skills icons

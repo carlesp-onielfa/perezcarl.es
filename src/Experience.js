@@ -5,6 +5,8 @@ import {Typography, Box, Stepper, Step, StepButton, StepLabel,StepContent, SvgIc
 import { useTranslation } from "react-i18next";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import VizSensor from "react-visibility-sensor";
+import Fade from '@material-ui/core/Fade';
 const useStyles = makeStyles(theme => ({
   rootPaper: {
     padding: theme.spacing(3, 3),
@@ -58,7 +60,6 @@ const useQontoStepIconStyles = makeStyles(theme =>({
 function QontoStepIcon(props) {
   const classes = useQontoStepIconStyles();
   const { active, icon='year'} = props;
-  console.log(props)
   return (
     <Box className={clsx(classes.root, {[classes.active]: active,})} >
       <Typography align='center'>
@@ -76,45 +77,54 @@ QontoStepIcon.propTypes = {
 
 function ExperienceStepper(){
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(-1);
   const steps = getSteps();
   const { t, i18n } = useTranslation();
   //CHANGE TO SELECT
   const handleStep = step => () => {
     setActiveStep(step);
   };
+  console.log(activeStep)
   return(
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} nonLinear orientation="vertical">
-        {Object.keys(steps).map((label, index) => (
-          <Step key={label}>
-            <StepButton icon = {steps[label]['time']} onClick={handleStep(index)} >
-              <StepLabel  StepIconComponent={QontoStepIcon} >
-                <Typography variant = 'h6'>{t(label)}</Typography>
-              </StepLabel>
-            </StepButton>
-            <StepContent>
-              {t(steps[label]['content']).split('\n').map((value)=>{
-                return <Typography paragraph>{value}</Typography>;
-              })}
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
+      <VizSensor onChange={(isVisible)=>{if(isVisible && activeStep==-1) setActiveStep(0)}}> 
+        <Stepper activeStep={activeStep} nonLinear orientation="vertical">
+          {Object.keys(steps).map((label, index) => (
+            <Step key={label}>
+              <StepButton icon = {steps[label]['time']} onClick={handleStep(index)} >
+                <StepLabel  StepIconComponent={QontoStepIcon} >
+                  <Typography variant = 'h6'>{t(label)}</Typography>
+                </StepLabel>
+              </StepButton>
+              <StepContent>
+                {t(steps[label]['content']).split('\n').map((value)=>{
+                  return <Typography paragraph>{value}</Typography>;
+                })}
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+      </VizSensor>
     </div>
   );
 }
 export default function Experience(){
   const classes = useStyles();
   const { t, i18n } = useTranslation();
+  const [visible, setVisible] = React.useState(false);
     return (
       <div>
-        <Paper className={classes.rootPaper}>
-          <Typography variant="h4" component="h2">
-            {t('Experience')}
-          </Typography>
-          <ExperienceStepper/>
-        </Paper>
+        <VizSensor onChange={(isVisible)=>{setVisible(!isVisible)}} partialVisibility>
+          <Fade in={!visible} timeout={1000}>
+            <Paper className={classes.rootPaper}>
+              <Typography variant="h4" component="h2">
+                {t('Experience')}
+              </Typography>
+              <ExperienceStepper/>
+            </Paper>
+          </Fade>
+        </VizSensor>
+            
      </div>
     );
 }

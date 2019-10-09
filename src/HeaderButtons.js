@@ -24,7 +24,6 @@ export default function HeaderButtons(){
         handleClose()
         i18next.changeLanguage(lang)
     }
-
     return(
         <div className={classes.button}  >
                 <IconButton edge='end' color="inherit" aria-controls="lang-menu" aria-haspopup="true" onClick={handleClickLang}>

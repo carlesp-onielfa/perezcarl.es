@@ -1,10 +1,11 @@
 import React from "react";
 import { Typography, Collapse, GridList, Card,CardActions, CardContent, IconButton, GridListTile } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import SwipeableViews from 'react-swipeable-views';
 import clsx from 'clsx';
 import {FiberManualRecord, FiberManualRecordOutlined, ExpandMore} from "@material-ui/icons";
 import { Trans } from "react-i18next";
+import VizSensor from "react-visibility-sensor";
+import {Fade} from '@material-ui/core/';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -61,10 +62,10 @@ function SkillLevelIcon({level, maxLevel = 3, color = 'primary'}){
  * @param {*} maxLevel maximum skill level (for the icon representation of the skill)
  * @param {*} variant typography variant
  */
-function SkillCard({title, data, maxLevel = 3, variant='h6'}){
+function SkillCard({title, data, maxLevel = 3, variant='h6', cardIndex = 0}){
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-
+    const [visible, setVisible]= React.useState(false);
     function handleExpandClick() {
         setExpanded(!expanded);
     }
@@ -99,20 +100,24 @@ function SkillCard({title, data, maxLevel = 3, variant='h6'}){
     
     return(
         <div>
-            <Card className={classes.card}>
-                <CardContent>
-                    <Typography variant="h5">
-                        <Trans>{title}</Trans>
-                    </Typography>
-                    <SkillLevelIcon level = {data.level} maxLevel = {maxLevel}/>
-                    <Typography variant="h7" color = 'textSecondary'>
-                        <Trans>{data['levelDesc']}</Trans>
-                    </Typography>
-                    {cardDesc}
-                </CardContent>
-                {cardActions}
-                
-            </Card>
+            <VizSensor onChange={(isVisible)=>{setVisible(!isVisible)}} partialVisibility>
+                <Fade in={!visible} timeout={1000} style={{ transitionDelay: !visible? cardIndex*250+'ms':'0ms'}}>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant="h5">
+                                <Trans>{title}</Trans>
+                            </Typography>
+                            <SkillLevelIcon level = {data.level} maxLevel = {maxLevel}/>
+                            <Typography variant="h7" color = 'textSecondary'>
+                                <Trans>{data['levelDesc']}</Trans>
+                            </Typography>
+                            {cardDesc}
+                        </CardContent>
+                        {cardActions}
+                        
+                    </Card>
+                </Fade>
+            </VizSensor>
         </div>
     );
 }
@@ -126,9 +131,9 @@ export default function SkillCards({skillSection}){
     return(
         <div style={{padding:'20px',paddingBottom:'5px'}}>
             <GridList cols = {isMobile ? 2 : 4} spacing = {30} cellHeight='auto'>
-                {Object.keys(skillSection.values).map(value => (
+                {Object.keys(skillSection.values).map((value, index) => (
                     <GridListTile key={value}>
-                        <SkillCard title = {value} data = {skillSection.values[value]} maxLevel = {skillSection.maxLevel}/>
+                        <SkillCard title = {value} data = {skillSection.values[value]} maxLevel = {skillSection.maxLevel} cardIndex={index}/>
                     </GridListTile>
                 ))}
             </GridList>

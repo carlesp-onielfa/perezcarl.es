@@ -35,17 +35,19 @@ class CustomAppBar extends React.Component {
         const headerSize = 100;
         configureAnchors({ offset: headerSize + 20, keepLastAnchorHash: true, onChange: (newValue) => this.navigate(newValue) })
         const NavTabs = () => (
-            <BrowserRouter style={{ flexGrow: 1 }}>
+            <BrowserRouter>
                 <Tabs
                     value={this.state.activeTabIndex}
                     onChange={this.handleChange}
                     indicatorColor="secondary"
                     textColor="inherit"
                     scrollButtons="auto"
+                    variant='scrollable'
+                    scrollButtons='on'
                     style={{ flexGrow: '1' }}
                     TabIndicatorProps={{ style: { backgroundColor: pink[200] } }}
                 >
-                    <Tab style={{ height: "70px" }} label={this.props.t("About me")} value='about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)} />
+                    <Tab style={{ height: "5em" }} label={this.props.t("About me")} value='about' disableFocusRipple component={Link} to="#about" scroll={el => this.scrollWithOffset(el, headerSize)} />
                     <Tab label={this.props.t("Experience")} value='experience' disableFocusRipple component={Link} to="#experience" scroll={el => this.scrollWithOffset(el, headerSize)} />
                     <Tab label={this.props.t("Skills")} value='skills' disableFocusRipple component={Link} to="#skills" scroll={el => this.scrollWithOffset(el, headerSize)} />
                     <Tab label={this.props.t("Portfolio")} value='portfolio' disableFocusRipple component={Link} to="#portfolio" scroll={el => this.scrollWithOffset(el, headerSize)} />
@@ -55,7 +57,7 @@ class CustomAppBar extends React.Component {
             <AppBar position='fixed'>
                 <Toolbar style={{ flexGrow: 1 }}>
                     <div>
-                        <Typography variant="h6" component="h1" style={{ marginRight: '50px', flexGrow: 1 }}>
+                        <Typography variant="h6" component="h1">
                             {"CARLES PÉREZ ONIELFA"}
                         </Typography>
                     </div>

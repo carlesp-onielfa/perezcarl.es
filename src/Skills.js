@@ -7,7 +7,8 @@ import SkillCards from "./SkillCards";
 import SwipeableViews from 'react-swipeable-views';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-
+import VizSensor from "react-visibility-sensor";
+import Fade from '@material-ui/core/Fade';
 //Object containing the data
 const skills = {
   //Spoken languages
@@ -130,6 +131,7 @@ export default function Skills() {
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
   const { t, i18n } = useTranslation();
+  const [visible, setVisible] = React.useState(false);
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -140,24 +142,28 @@ export default function Skills() {
 
   return (
     <div>
-      <Paper >
-        <Typography className={classes.root} variant="h4" component="h2" style={{padding : '20px'}}>
-          <Trans>Skills</Trans>
-        </Typography>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          scrollButtons="auto"
-          variant="fullWidth"
-          centered
-        >
-          {Object.keys(skills).map((value, index) => (
-                <Tab label={t(skills[value]['title'])} disableFocusRipple/>
-          ))}
-        </Tabs>
-      </Paper>
+      <VizSensor onChange={(isVisible)=>{setVisible(!isVisible)}} partialVisibility>
+        <Fade in={!visible} timeout={1000}>
+          <Paper >
+            <Typography className={classes.root} variant="h4" component="h2" style={{padding : '20px'}}>
+              <Trans>Skills</Trans>
+            </Typography>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="scrollable"
+              scrollButtons="on"
+              centered
+            >
+              {Object.keys(skills).map((value, index) => (
+                    <Tab label={t(skills[value]['title'])} disableFocusRipple/>
+              ))}
+            </Tabs>
+          </Paper>
+        </Fade>
+      </VizSensor>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}

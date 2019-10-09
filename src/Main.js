@@ -31,6 +31,9 @@ let theme = createMuiTheme({
         ].join(','),
         h6: {
             fontFamily: 'Montserrat'
+        },
+        h4: {
+            fontFamily: 'Montserrat'
         }
     },
 });
